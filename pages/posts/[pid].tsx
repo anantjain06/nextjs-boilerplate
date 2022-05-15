@@ -1,13 +1,9 @@
-import { useRouter } from 'next/router'
 import Layout from '../../components/layout'
-import constants from '../../lib/constants'
-import { useState, useEffect, useLayoutEffect } from 'react'
-import { Col, CardGroup, Card } from 'react-bootstrap'
+import { useState, useLayoutEffect } from 'react'
+import { Col, Card, Row, Image, Stack } from 'react-bootstrap'
 
 const Post = () => {
-  const [post, setPost] = useState({});
-  const router = useRouter()
-  const { pid } = router.query;
+  const [post, setPost] = useState({ name: '', image_url: '', description: '' });
 
   useLayoutEffect(() => {
     const state: any = sessionStorage.getItem('postState') || null
@@ -15,22 +11,31 @@ const Post = () => {
   }, [])
 
   return <>
+    <Stack gap={3}>
+      <Row>
+        <Col>
+          <Image
+            alt={post.name}
+            src={post.image_url}
+            className='contain'
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Card.Title> {(post.name) ? post.name : null}</Card.Title>
 
-    <Col >
-      <CardGroup className={`post-item`}>
-        <Card className={`post-item`}>
-          <Card.Body >
-            <Card.Img variant="top" src={post.image_url} />
-            <Card.Title className="h6">
-              {(post.name) ? post.name : null}
-            </Card.Title>
-            <Card.Text>
-              {post.description}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </CardGroup>
-    </Col>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Card.Text>
+            {post.description}
+          </Card.Text>
+
+        </Col>
+      </Row>
+    </Stack>
   </>
 }
 

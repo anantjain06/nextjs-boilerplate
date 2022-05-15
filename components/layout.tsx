@@ -1,6 +1,8 @@
+
 import Footer from "./footer";
 import Header from "./header";
 import { Container } from 'react-bootstrap'
+
 
 type LayoutProps = {
     children: React.ReactNode,

@@ -1,7 +1,7 @@
 import NavBar from "./navbar";
 import { NextSeo } from 'next-seo';
 import Image from "next/image";
-import { Stack } from "react-bootstrap";
+import { Stack} from "react-bootstrap";
 
 const Header = (metaTags:any) => {
     return <>
